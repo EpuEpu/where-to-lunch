@@ -1,0 +1,41 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./db-init/mongo:/docker-entrypoint-initdb.d
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mysql1:
+    image: mysql:8.0
+    container_name: mysql1
+    ports:
+      - "3316:3306"
+    volumes:
+      - mysql1_data:/var/lib/mysql
+      - ./db-init/mysql1:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: sqldb
+
+  mysql2:
+    image: mysql:8.0
+    container_name: mysql2
+    ports:
+      - "3317:3306"
+    volumes:
+      - mysql2_data:/var/lib/mysql
+      - ./db-init/mysql2:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: sqldb
+
+volumes:
+  mongodb_data:
+  mysql1_data:
+  mysql2_data:
