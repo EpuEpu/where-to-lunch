@@ -17,5 +17,7 @@
 
   <modules>
     <module>places-service</module>
+    <module>lunch-service</module>
+    <module>notification-service</module>
   </modules>
 </project>
